@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>City Finder</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+$("#button").click(function(e){
+  var url = "http://mclement.us/comment";
+  var postdata = JSON.stringify($("#commentForm").serializeArray());
+  $("#json").append(postdata);
+  console.log("Calling POST data: "+postdata);
+  console.log(postdata);
+  $.post(url,postdata,function(data,textStatus) {
+    $("#done").append(textStatus);
+  });
+  e.preventDefault();
+});
+</script>
+</head>
+<body>
+<form id="commentForm" action="">
+Enter A Comment: 
+<br>
+User: <input type="text" name="User" value="Mark"><br>
+Comment: <input type="text" name="Comment" value="Hello"><br>
+<input id="button" type="submit" value="Submit">
+</form>
+<div id="json"></div>
+<div id="done"></div>
+
+
+</body>
+</html>

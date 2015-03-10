@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(document).ready(function(){
+    $("#Submit").click(function(){
+        var myobj = {Name:$("#Name").val(),Comment:$("#Comment").val()};
+        console.log(myobj);
+        jobj = JSON.stringify(myobj);
+	var url = "http://mclement.us/comment";
+        $("#json").append(jobj);
+	$.post(url,jobj,function(data,textStatus) {
+	  $("#done").append(textStatus);
+	});
+    });
+    $("#Show").click(function(){
+      var url = "http://mclement.us/comments";
+      $.getJSON(url,function(data) {
+        var everything;
+        everything = "<ul>";
+        $.each(data, function(i,item) {
+          everything += "<li> Name: "+data[i].Name+" Comment: "+data[i].Comment;
+        });
+        everything += "</ul>";
+        $("#currentComments").html(everything);
+      });
+    });
+});
+</script>
+</head>
+<body>
+
+<form id="commentForm" action="">
+  Name: <input type="text" id="Name" value="Mickey"><br>
+  Comment: <input type="text" id="Comment" value="Hello"><br>
+</form>
+
+<button id="Submit">Submit Comment</button>
+<button id="Show">Show Comments</button>
+
+<div id="json"></div>
+<div id="done"></div>
+Current Comments: <span id="currentComments">Empty</span>
+
+</body>
+</html>
+
+
+

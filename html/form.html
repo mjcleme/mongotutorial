@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("#json").text(JSON.stringify($("#nameForm").serializeArray()));
+    });
+});
+</script>
+</head>
+<body>
+
+<form id="nameForm" action="">
+  First name: <input type="text" name="FirstName" value="Mickey"><br>
+  Last name: <input type="text" name="LastName" value="Mouse"><br>
+</form>
+
+<button>Serialize form values</button>
+
+<div id="json"></div>
+
+</body>
+</html>
+
+

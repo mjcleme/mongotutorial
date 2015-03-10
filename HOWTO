@@ -1,0 +1,2 @@
+nohup sudo mongod --fork --logpath /var/log/mongodb.log >& mongo.out 
+nohup sudo node v4.js >& output.node &
